@@ -1,0 +1,6 @@
+/node_modules
+
+# dotenv secret
+.env
+
+README.txt
