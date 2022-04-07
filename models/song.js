@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../db/db.config');
 
-const Songs = sequelize.define('songs', {
+const Song = sequelize.define('songs', {
   artistName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -12,4 +12,4 @@ const Songs = sequelize.define('songs', {
   },
 });
 
-module.exports = Songs;
+module.exports = Song;

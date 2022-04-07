@@ -1,13 +1,14 @@
-const createArtistController = require('./artists.controllers/createArtist.controller');
-const deleteArtistController = require('./artists.controllers/deleteArtist.controller');
-const editArtistController = require('./artists.controllers/editArtist.controller');
-const getArtistsController = require('./artists.controllers/getArtists.controller');
+const createSongController = require('./songs.controllers/createSong.controller');
+const getSongsController = require('./songs.controllers/getAllSongs.controller')
+const editSongController = require('./songs.controllers/editSong.controller')
+const deleteSongController = require('./songs.controllers/deleteSong.controller')
+
 
 const songController = {
-  create: createArtistController,
-  delete: deleteArtistController,
-  edit: editArtistController,
-  getAll: getArtistsController,
+  create: createSongController,
+  delete: deleteSongController,
+  edit: editSongController,
+  getAll: getSongsController,
 };
 
 module.exports = songController;

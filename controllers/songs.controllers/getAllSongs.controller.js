@@ -1,12 +1,15 @@
-const artistService = require('../../services/artists.service');
+const songsService = require('../../services/songs.service');
 
-const getArtistsController = async (req, res) => {
+const getAllSongsController = async (req, res) => {
   try {
-    const foundArtists = await artistService.getAll();
-    res.status(200).json(foundArtists);
+    const foundSongs = await songsService.getAll();
+    if (!foundSongs) {
+      res.status(400).json({ msg: 'Songs are yet to come' });
+    }
+    res.status(200).json(foundSongs);
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    res.status(400).json({ msg: error });
   }
 };
 
-module.exports = getArtistsController;
+module.exports = getAllSongsController;

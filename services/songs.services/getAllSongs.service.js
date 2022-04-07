@@ -1,10 +1,10 @@
-const Artist = require('../../models/artist')
+const Song = require('../../models/song');
 
-const getAllArtistsService = async (artistName) => {
-    const artists = await Artist.findAll({
-        attributes: ['id', 'artistName', 'songsCount'],
-    });
-    return artists;
+const getAllSongsService = async () => {
+  const songs = await Song.findAll({
+    attributes: ['id', 'artistName', 'songName'],
+  });
+  return songs;
 };
 
-module.exports = getAllArtistsService;
+module.exports = getAllSongsService;

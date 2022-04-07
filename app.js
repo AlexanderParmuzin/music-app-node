@@ -6,7 +6,7 @@ const appRouter = require('./routes/app.routes');
 const bodyParser = require('body-parser');
 
 const Artist = require('./models/artist');
-const Songs = require('./models/songs');
+const Song = require('./models/song');
 
 const app = express();
 

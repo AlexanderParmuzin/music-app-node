@@ -1,26 +1,39 @@
-const artistService = require('../../services/artists.service');
+const songsService = require('../../services/songs.service');
+const artistsService = require('../../services/artists.service');
 
-const createArtistController = async (req, res) => {
+const createSongController = async (req, res) => {
   try {
-    const artistName = req.body.name;
+    const artistName = req.body.artistName;
+    const songName = req.body.songName;
 
-    const foundArtist = await artistService.getByName(artistName);
+    const foundArtist = await artistsService.getByName(artistName);
 
-    if (foundArtist) {
-      res.status(400).json({ msg: 'Artist with such name already exists' });
+    if (!foundArtist) {
+      res
+        .status(400)
+        .json({ msg: 'Artist is not created yet. Please create artist first' });
+        return;
+    }
+
+    const foundSong = await songsService.getByName(artistName, songName);
+
+    if (foundSong) {
+      res
+        .status(400)
+        .json({ msg: 'The song of this artist with such name already exists' });
       return;
     }
 
-    const isArtistCreated = await artistService.create(artistName);
+    const isSongCreated = await songsService.create(artistName, songName);
 
-    if (!isArtistCreated) {
-      throw new Error('Artist creation failed');
+    if (!isSongCreated) {
+      throw new Error('Song creation failed');
     }
 
-    res.status(200).json({ msg: `Artist ${artistName} was added to database` });
+    res.status(200).json({ msg: `Song ${songName} was added to database` });
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
 };
 
-module.exports = createArtistController;
+module.exports = createSongController;

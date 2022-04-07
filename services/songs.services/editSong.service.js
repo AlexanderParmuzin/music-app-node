@@ -1,32 +1,32 @@
-const Artist = require('../../models/artist');
+const Song = require('../../models/song');
 
-const findArtistById = async (originalArtistId) => {
-  const foundArtist = await Artist.findOne({
+const findSongById = async (originalSongId) => {
+  const foundSong = Song.findOne({
     raw: true,
     where: {
-      id: originalArtistId,
+      id: originalSongId,
     },
   });
-  return foundArtist;
+  return foundSong;
 };
 
-const updateArtist = async (newArtistName, originalArtistId) => {
-  const updatedArtist = await Artist.update(
+const updateSong = async (newSongName, originalSongId) => {
+  const updatedSong = await Song.update(
     {
-      artistName: newArtistName,
+      songName: newSongName,
     },
     {
       where: {
-        id: originalArtistId,
+        id: originalSongId,
       },
     }
   );
-  return updatedArtist;
+  return updatedSong;
 };
 
-const editArtistService = {
-  findArtistById,
-  updateArtist,
+const editSongService = {
+  findSongById,
+  updateSong,
 };
 
-module.exports = editArtistService;
+module.exports = editSongService;

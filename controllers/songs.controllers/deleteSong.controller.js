@@ -1,32 +1,32 @@
-const artistService = require('../../services/artists.service');
+const songsService = require('../../services/songs.service');
 
-const deleteArtistController = async (req, res) => {
+const deleteSongController = async (req, res) => {
   try {
-    const artistId = req.params.artistId;
+    const songId = req.params.songId;
 
-    const foundArtist = await artistService.getById(+artistId);
-    console.log('foundArtist', foundArtist);
-    if (!foundArtist) {
-      res.status(400).json({ msg: 'Artist is not created yet, can`t delete' });
+    const foundSong = await songsService.getById(+songId);
+    
+    if (!foundSong) {
+      res.status(400).json({ msg: 'Song is not created yet, can`t delete' });
       return;
     }
 
-    const artistName = foundArtist.artistName;
+    const songName = foundSong.songName;
 
-    const deletedArtist = await artistService.delete(artistId);
-    console.log('deletedArtist', deletedArtist);
-    if (!deletedArtist) {
+    const deletedSong = await songsService.delete(songId);
+    
+    if (!deletedSong) {
       throw new Error();
     }
 
     res.status(200).json({
-      msg: `Artist ${artistName} was deleted`,
+      msg: `Song ${songName} was deleted`,
     });
     return;
   } catch (error) {
     console.log(error);
-    res.status(400).json({ msg: 'Unable to delete artist' });
+    res.status(400).json({ msg: 'Unable to delete song' });
   }
 };
 
-module.exports = deleteArtistController;
+module.exports = deleteSongController;

@@ -1,12 +1,12 @@
-const Artist = require('../../models/artist');
+const Song = require('../../models/song');
 
-const deleteArtistService = async (artistId) => {
-  const deletedArtist = await Artist.destroy({
+const deleteSongService = async (songId) => {
+  const deletedSong = await Song.destroy({
     where: {
-      id: artistId,
+      id: songId,
     },
   });
-  return deletedArtist;
+  return deletedSong;
 };
 
-module.exports = deleteArtistService;
+module.exports = deleteSongService;

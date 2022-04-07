@@ -1,41 +1,39 @@
-const artistService = require('../../services/artists.service');
+const songsService = require('../../services/songs.service');
 
-const editArtistController = async (req, res) => {
+const editSongController = async (req, res) => {
   try {
-    const originalArtistId = req.params.artistId;
-    const newArtistName = req.body.artistName;
+    const originalSongId = req.params.songId;
+    const newSongName = req.body.songName;
 
-    const foundArtist = await artistService.getById(+originalArtistId);
+    const foundSong = await songsService.getById(+originalSongId);
 
-    if (!foundArtist) {
+    if (!foundSong) {
       res.status(400).json({ msg: 'Artist is not created yet, can`t edit' });
       return;
     }
 
-    const previousName = foundArtist.artistName;
+    const previousName = foundSong.songName;
 
-    if (previousName == newArtistName) {
-      res.status(400).json({ msg: 'Artist has this name already' });
+    if (previousName == newSongName) {
+      res.status(400).json({ msg: 'Song is already called that way' });
       return;
     }
 
-    const updatedArtist = await artistService.edit(
-      newArtistName,
-      originalArtistId
-    );
+    const updatedSong = await songsService.edit(newSongName, originalSongId);
 
-    if (!updatedArtist) {
+    if (!updatedSong) {
       throw new Error();
     }
 
     res.status(200).json({
       msg:
-        'Artist`s' + ` name ${previousName} was changed into ${newArtistName}`,
+        'Song`s' + ` name ${previousName} was changed into ${newSongName}`,
     });
     return;
   } catch (error) {
-    res.status(400).json({ msg: 'Unable to edit artist' });
+    console.log(error);
+    res.status(400).json({ msg: 'Unable to edit song' });
   }
 };
 
-module.exports = editArtistController;
+module.exports = editSongController;

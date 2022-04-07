@@ -9,6 +9,7 @@ const Artist = sequelize.define('artists', {
   },
   songsCount: {
     type: Sequelize.INTEGER,
+    defaultValue: '0',
   },
 });
 

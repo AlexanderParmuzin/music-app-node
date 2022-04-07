@@ -1,6 +1,6 @@
 const Artist = require('../../models/artist')
 
-const getAllArtistsService = async (artistName) => {
+const getAllArtistsService = async () => {
     const artists = await Artist.findAll({
         attributes: ['id', 'artistName', 'songsCount'],
     });
