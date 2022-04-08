@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .container {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 50px;
+    }
+
+    .artists_section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .artists_section div {
+        padding-top: 20px;
+    }
+
+    .songs_section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .songs_section div {
+        padding-top: 20px;
+    }
+
+    #result {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 1.5em;
+    }
+</style>
+
+<body>
+    <container class="container">
+        <div class="artists_section">
+            <div>
+                <button id="getAllArtistsButton">Get All Artists</button>
+            </div>
+            <div>
+                <input id="createArtistInput" type="text" placeholder="Artist Name">
+                <button id="createArtistButton" type="button">
+                    Create Artist
+                </button>
+            </div>
+            <div>
+                <input id="editArtistInputId" type="text" placeholder="Artist id you want to edit">
+                <input id="editArtistInputName" type="text" placeholder="New Artist name">
+                <button id="editArtistButton" type="button">
+                    Edit Artist
+                </button>
+            </div>
+            <div>
+                <input id="deleteArtistInputId" type="text" placeholder="Artist id you want to delete">
+                <button id="deleteArtistButton" type="button">
+                    Delete Artist
+                </button>
+            </div>
+        </div>
+
+        <div class="songs_section">
+            <div>
+                <button id="getAllSongsButton">Get All Songs</button>
+            </div>
+            <div>
+                <input id="createSongInputArtist" type="text" placeholder="Artist Name">
+                <input id="createSongInputSong" type="text" placeholder="Song Name">
+                <button id="createSongButton" type="button">
+                    Create Song
+                </button>
+            </div>
+            <div>
+                <input id="editSongInputId" type="text" placeholder="Song id you want to edit">
+                <input id="editSongInputName" type="text" placeholder="New Song name">
+                <button id="editSongButton" type="button">
+                    Edit Song
+                </button>
+            </div>
+            <div>
+                <input id="deleteSongInputId" type="text" placeholder="Song id you want to delete">
+                <button id="deleteSongButton" type="button">
+                    Delete Song
+                </button>
+            </div>
+        </div>
+    </container>
+
+    <div id="result">
+
+    </div>
+</body>
+
+<script src="public/script.js">
+
+</script>
+
+</html>

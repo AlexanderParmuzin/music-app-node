@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 
 const sequelize = require('./db/db.config');
@@ -10,15 +10,22 @@ const Song = require('./models/song');
 
 const app = express();
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-app.use('/routes', appRouter);
+// Static files
+app.use('/public', express.static('./public/'));
 
-app.get('/', (req, res, next) => {
-  res.status(404).json({ pageTitle: 'rap' });
+// Set views
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+app.get('', (req, res) => {
+  res.render('index');
 });
+
+app.use('/routes', appRouter);
 
 app.listen(PORT, () => {
   sequelize.sync();

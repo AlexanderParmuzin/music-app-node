@@ -2,7 +2,7 @@ const artistsService = require('../../services/artists.service');
 
 const createArtistController = async (req, res) => {
   try {
-    const artistName = req.body.name;
+    const artistName = req.body.artistName;
 
     const foundArtist = await artistsService.getByName(artistName);
 
