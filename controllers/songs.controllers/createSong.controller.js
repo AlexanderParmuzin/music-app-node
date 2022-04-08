@@ -12,7 +12,7 @@ const createSongController = async (req, res) => {
       res
         .status(400)
         .json({ msg: 'Artist is not created yet. Please create artist first' });
-        return;
+      return;
     }
 
     const foundSong = await songsService.getByName(artistName, songName);

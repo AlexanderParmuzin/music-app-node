@@ -4,6 +4,19 @@ const createArtistController = async (req, res) => {
   try {
     const artistName = req.body.artistName;
 
+    const regex1 = /м[o, о, а]нет[о, а]чка/gi;
+    const regex2 = /m[o,a]net[o, a]chka/gi;
+
+    const found1 = artistName.match(regex1);
+    const found2 = artistName.match(regex2);
+
+    if (found1 || found2) {
+      res
+        .status(400)
+        .json({ msg: 'Sorry, cant add that. Only good music accepted.' });
+      return;
+    }
+
     const foundArtist = await artistsService.getByName(artistName);
 
     if (foundArtist) {
