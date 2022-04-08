@@ -4,8 +4,8 @@ const createArtistController = async (req, res) => {
   try {
     const artistName = req.body.artistName;
 
-    const regex1 = /м[o, о, а]нет[о, а]чка/gi;
-    const regex2 = /m[o,a]net[o, a]chka/gi;
+    const regex1 = /м[o, a, о, а ]нет[o, a, о, а]чка/gi;
+    const regex2 = /m[o, a, о, а]net[o, a, о, а]chka/gi;
 
     const found1 = artistName.match(regex1);
     const found2 = artistName.match(regex2);
