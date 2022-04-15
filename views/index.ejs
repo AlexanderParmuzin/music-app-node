@@ -33,6 +33,18 @@
         padding-top: 20px;
     }
 
+    input {
+        width: 270px;
+        height: 25px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    button {
+        width: 100px;
+        height: 30px;
+    }
+
     #result {
         text-align: center;
         margin-top: 50px;
@@ -65,6 +77,12 @@
                     Delete Artist
                 </button>
             </div>
+            <div>
+                <input id="getOneArtistInput" type="text" placeholder="Artist name whos songs you want to see">
+                <button id="getOneArtistButton" type="button">
+                    Get Artist
+                </button>
+            </div>
         </div>
 
         <div class="songs_section">
@@ -89,6 +107,12 @@
                 <input id="deleteSongInputId" type="text" placeholder="Song id you want to delete">
                 <button id="deleteSongButton" type="button">
                     Delete Song
+                </button>
+            </div>
+            <div>
+                <input id="getOneSongInput" type="text" placeholder="Songs name you want to find">
+                <button id="getOneSongButton" type="button">
+                    Get Songs
                 </button>
             </div>
         </div>

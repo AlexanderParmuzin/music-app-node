@@ -1,4 +1,4 @@
-const Artist = require('../../models/artist');
+const { Artist } = require('../../models');
 
 const deleteArtistService = async (artistId) => {
   const deletedArtist = await Artist.destroy({

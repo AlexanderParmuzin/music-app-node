@@ -1,9 +1,12 @@
-const { Song, Artist } = require('../../models');
+const { Song } = require('../../models');
 
-const getAllSongsService = async () => {
+const getAllSongsService = async (songName) => {
   const songs = await Song.findAll({
     attributes: ['id', 'artistName', 'songName', 'artistId'],
-    include: 'artist',
+    includes: 'artist',
+    where: {
+      songName,
+    },
   });
   return songs;
 };

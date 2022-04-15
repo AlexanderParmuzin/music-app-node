@@ -9,4 +9,6 @@ artistsRouter.post('/add-artist', artistController.create); // Creates new artis
 artistsRouter.put('/:artistId', artistController.edit); // Edits artist`s name
 artistsRouter.delete('/:artistId', artistController.delete); // Deletes artist`s row from db
 
+artistsRouter.post('/get-artist', artistController.getOne); // Gets artist json with linked songs
+
 module.exports = artistsRouter;

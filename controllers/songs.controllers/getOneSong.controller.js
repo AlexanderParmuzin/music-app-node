@@ -1,16 +1,18 @@
 const logger = require('../../logger');
 const songsService = require('../../services/songs.service');
 
-const getAllSongsController = async (req, res) => {
+const getOneSongController = async (req, res) => {
   try {
-    const foundSongs = await songsService.getAll();
+    const { songName } = req.body;
+
+    const foundSongs = await songsService.getOneSong(songName);
 
     if (!foundSongs || !foundSongs.length) {
-      res.status(400).json({ msg: 'No songs found. Add them.' });
+      res.status(400).json({ msg: 'No songs found' });
       logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
       return;
     }
-    
+
     res.status(200).json(foundSongs);
     logger.info(`200 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
   } catch (error) {
@@ -19,4 +21,4 @@ const getAllSongsController = async (req, res) => {
   }
 };
 
-module.exports = getAllSongsController;
+module.exports = getOneSongController;

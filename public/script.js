@@ -11,6 +11,8 @@ const editArtist = document.getElementById('editArtistButton');
 
 const deleteArtist = document.getElementById('deleteArtistButton');
 
+const getOneArtist = document.getElementById('getOneArtistButton');
+
 // Songs
 const getAllSongs = document.getElementById('getAllSongsButton');
 
@@ -19,6 +21,8 @@ const createSong = document.getElementById('createSongButton');
 const editSong = document.getElementById('editSongButton');
 
 const deleteSong = document.getElementById('deleteSongButton');
+
+const getOneSong = document.getElementById('getOneSongButton');
 
 // Input declarations
 
@@ -30,6 +34,7 @@ const editArtistInputName = document.getElementById('editArtistInputName');
 
 const deleteArtistInputId = document.getElementById('deleteArtistInputId');
 
+const getOneArtistInput = document.getElementById('getOneArtistInput');
 // Songs
 const createSongInputArtist = document.getElementById('createSongInputArtist');
 const createSongInputSong = document.getElementById('createSongInputSong');
@@ -38,6 +43,8 @@ const editSongInputId = document.getElementById('editSongInputId');
 const editSongInputName = document.getElementById('editSongInputName');
 
 const deleteSongInputId = document.getElementById('deleteSongInputId');
+
+const getOneSongInput = document.getElementById('getOneSongInput');
 
 // ARTISTS SECTION
 
@@ -72,6 +79,15 @@ deleteArtist.addEventListener('click', async () => {
   result.innerHTML = JSON.stringify(json);
 });
 
+// Get One Artist
+
+getOneArtist.addEventListener('click', async () => {
+  const json = await newFetch(`routes/artists/get-artist`, 'POST', {
+    artistName: getOneArtistInput.value,
+  });
+  result.innerHTML = JSON.stringify(json);
+});
+
 // SONGS SECTION
 
 // Get All Songs
@@ -103,6 +119,15 @@ editSong.addEventListener('click', async () => {
 deleteSong.addEventListener('click', async () => {
   const id = deleteSongInputId.value;
   const json = await newFetch(`routes/songs/${id}`, 'DELETE');
+  result.innerHTML = JSON.stringify(json);
+});
+
+// Get One Song
+
+getOneSong.addEventListener('click', async () => {
+  const json = await newFetch(`routes/songs/get-song`, 'POST', {
+    songName: getOneSongInput.value,
+  });
   result.innerHTML = JSON.stringify(json);
 });
 

@@ -1,18 +1,25 @@
 require('dotenv').config();
 const express = require('express');
 
-const sequelize = require('./db/db.config');
+const { sequelize } = require('./models');
+const fs = require('fs');
+const path = require('path');
+const logger = require('./logger');
+const morgan = require('morgan');
+
 const appRouter = require('./routes/app.routes');
 const bodyParser = require('body-parser');
-
-const Artist = require('./models/artist');
-const Song = require('./models/song');
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, 'logs/access.log'),
+  { flags: 'a' }
+);
 
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 
+// Middlewares
 app.use(bodyParser.json());
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // Static files
 app.use('/public', express.static('./public/'));
@@ -27,7 +34,13 @@ app.get('', (req, res) => {
 
 app.use('/routes', appRouter);
 
-app.listen(PORT, () => {
-  sequelize.sync();
-  console.log(`Server is running on PORT ${PORT}`);
+app.listen(PORT, async () => {
+  try {
+    await sequelize.authenticate();
+    logger.info('Connection has been established successfully.');
+    await sequelize.sync();
+    logger.info(`Server is running on PORT ${PORT}`);
+  } catch (error) {
+    logger.error('Unable to connect to the database:', error);
+  }
 });

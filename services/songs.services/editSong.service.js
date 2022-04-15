@@ -1,4 +1,4 @@
-const Song = require('../../models/song');
+const { Song } = require('../../models');
 
 const findSongById = async (originalSongId) => {
   const foundSong = Song.findOne({
