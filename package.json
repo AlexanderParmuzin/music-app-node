@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "dev": "nodemon app"
+    "create:db": "npx sequelize-cli db:create",
+    "dev": "npx sequelize-cli db:create && nodemon app"
   },
   "keywords": [],
   "author": "",

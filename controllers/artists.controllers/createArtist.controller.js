@@ -1,6 +1,8 @@
 const logger = require('../../logger');
 const artistsService = require('../../services/artists.service');
 
+const { MONETOCHKA_INCIDENT, CREATE_ARTIST_EXISTS, CREATE_ARTIST_FAIL } = require('../../consts/artists.const');
+
 const createArtistController = async (req, res) => {
   try {
     const artistName = req.body.artistName;
@@ -13,7 +15,7 @@ const createArtistController = async (req, res) => {
     if (isRegexMatched) {
       res
         .status(400)
-        .json({ msg: 'Sorry, cant add that. Only good music accepted.' });
+        .json({ msg: MONETOCHKA_INCIDENT });
         logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
       return;
     }
@@ -21,7 +23,7 @@ const createArtistController = async (req, res) => {
     const foundArtist = await artistsService.getByName(artistName);
 
     if (foundArtist) {
-      res.status(400).json({ msg: 'Artist with such name already exists' });
+      res.status(400).json({ msg: CREATE_ARTIST_EXISTS });
       logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
       return;
     }
@@ -30,9 +32,8 @@ const createArtistController = async (req, res) => {
 
     if (!isArtistCreated) {
       logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
-      throw new Error('Artist creation failed');
+      throw new Error(CREATE_ARTIST_FAIL);
     }
-
     
     res.status(200).json({ msg: `Artist ${artistName} was added to database` });
     logger.info(`200 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)

@@ -1,3 +1,4 @@
+const { GET_ARTISTS_NOT_FOUND } = require('../../consts/artists.const');
 const logger = require('../../logger');
 const artistsService = require('../../services/artists.service');
 
@@ -6,16 +7,22 @@ const getAllArtistsController = async (req, res) => {
     const foundArtists = await artistsService.getAll();
 
     if (!foundArtists || !foundArtists.length) {
-      res.status(400).json({ msg: 'No artists found. Add them.' });
-      logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
+      res.status(400).json({ msg: GET_ARTISTS_NOT_FOUND });
+      logger.error(
+        `400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`
+      );
       return;
     }
-    
+
     res.status(200).json(foundArtists);
-    logger.info(`200 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
+    logger.info(
+      `200 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`
+    );
   } catch (error) {
     res.status(400).json({ msg: error });
-    logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
+    logger.error(
+      `400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`
+    );
   }
 };
 
