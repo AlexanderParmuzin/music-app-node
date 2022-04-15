@@ -274,3 +274,5 @@ error: Apr-15-2022 13:08:42: 	400 || Bad Request - /routes/artists/2 - PUT - ::1
 error: Apr-15-2022 13:08:45: 	400 || Bad Request - /routes/artists/add-artist - POST - ::1
 info: Apr-15-2022 13:08:46: 	200 || Not Modified - /routes/artists - GET - ::1
 info: Apr-15-2022 13:08:47: 	200 || Not Modified - /routes/songs - GET - ::1
+info: Apr-15-2022 13:15:55: 	Connection has been established successfully.
+info: Apr-15-2022 13:15:55: 	Server is running on PORT 3000

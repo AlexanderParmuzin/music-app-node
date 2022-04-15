@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app",
     "create:db": "npx sequelize-cli db:create",
-    "dev": "npx sequelize-cli db:create && nodemon app"
+    "build": "npx sequelize-cli db:create && nodemon app",
+    "dev": "nodemon app"
   },
   "keywords": [],
   "author": "",
